@@ -1,0 +1,11 @@
+services:
+  productpage:
+    build: .
+    image: ghcr.io/bordee2000/bookinfo-productpage:dev
+    ports:
+      - "8083:8083"
+    environment:
+      REVIEWS_HOSTNAME: http://reviews:9080
+      RATINGS_HOSTNAME: http://ratings:8080
+      DETAILS_HOSTNAME: http://details:8081
+    
