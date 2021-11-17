@@ -1,0 +1,18 @@
+productpage:
+  namespace: student27-bookinfo-prd
+  image: ghcr.io/bordee2000/bookinfo-productpage
+  tag: prd
+  replicas: 1
+  imagePullSecrets: registry-bookinfo
+  port: 8083
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  host: itkmitl.bookinfo.opsta.net
+  path: "/student27/productpage(/|$)(.*)"
+  serviceType: ClusterIP
+extraEnv:
+  REVIEWS_HOSTNAME: http://bookinfo-prd-reviews:9080
+  RATINGS_HOSTNAME: http://bookinfo-prd-ratings:8080
+  DETAILS_HOSTNAME: http://bookinfo-prd-details:8081
